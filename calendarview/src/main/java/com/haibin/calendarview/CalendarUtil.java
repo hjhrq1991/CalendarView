@@ -105,9 +105,9 @@ public final class CalendarUtil {
      * 获取月视图的确切高度
      * Test pass
      *
-     * @param year       年
-     * @param month      月
-     * @param itemHeight 每项的高度
+     * @param year          年
+     * @param month         月
+     * @param itemHeight    每项的高度
      * @param weekStartWith 周起始
      * @return 不需要多余行的高度
      */
@@ -124,11 +124,11 @@ public final class CalendarUtil {
      * 获取月视图的确切高度
      * Test pass
      *
-     * @param year       年
-     * @param month      月
-     * @param itemHeight 每项的高度
+     * @param year          年
+     * @param month         月
+     * @param itemHeight    每项的高度
      * @param weekStartWith weekStartWith
-     * @param mode  mode
+     * @param mode          mode
      * @return 不需要多余行的高度
      */
     public static int getMonthViewHeight(int year, int month, int itemHeight, int weekStartWith, int mode) {
@@ -415,7 +415,7 @@ public final class CalendarUtil {
      * @param minYearMonth maxYear 最小年份月份，like : 2017-07
      * @param minYearDay   最小年份天
      * @param week         从最小年份minYear月minYearMonth 日1 开始的第几周 week > 0
-     * @param weekStart 周起始
+     * @param weekStart    周起始
      * @return 该星期的第一天日期
      */
     public static Calendar getFirstCalendarStartWithMinCalendar(int minYear, int minYearMonth, int minYearDay, int week, int weekStart) {
@@ -662,7 +662,6 @@ public final class CalendarUtil {
         selectCalendar.setCurrentMonth(true);
         mItems.add(selectCalendar);
 
-
         for (int i = 1; i <= weekEndDiff; i++) {
             date.setTimeInMillis(curDateMills + i * ONE_DAY);
             Calendar calendarDate = new Calendar();
@@ -675,6 +674,14 @@ public final class CalendarUtil {
             LunarCalendar.setupLunarCalendar(calendarDate);
             calendarDate.setCurrentMonth(true);
             mItems.add(calendarDate);
+        }
+
+        // 增加当前月判断。取中间天月份来判断前后日期是否当前月
+        // modify: huangrenqiu
+        // date: 2023.08.11
+        Calendar middleCalendar = mItems.get(3);
+        for (Calendar item : mItems) {
+            item.setCurrentMonth(middleCalendar.isSameMonth(item));
         }
         return mItems;
     }
