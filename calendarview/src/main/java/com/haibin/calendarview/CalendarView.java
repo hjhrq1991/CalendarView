@@ -514,6 +514,44 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
+     * 滑动到前一天
+     * modify: huangrenqiu
+     * date: 2023.08.11
+     */
+    public void scrollToPreCalendar() {
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.set(mDelegate.mSelectedCalendar.getYear(),
+                mDelegate.mSelectedCalendar.getMonth() - 1,
+                mDelegate.mSelectedCalendar.getDay());
+        calendar.add(java.util.Calendar.DATE, -1);
+
+        scrollToCalendar(calendar.get(java.util.Calendar.YEAR),
+                calendar.get(java.util.Calendar.MONTH) + 1,
+                calendar.get(java.util.Calendar.DAY_OF_MONTH),
+                false,
+                true);
+    }
+
+    /**
+     * 滑动到后一天
+     * modify: huangrenqiu
+     * date: 2023.08.11
+     */
+    public void scrollToNextCalendar() {
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.set(mDelegate.mSelectedCalendar.getYear(),
+                mDelegate.mSelectedCalendar.getMonth() - 1,
+                mDelegate.mSelectedCalendar.getDay());
+        calendar.add(java.util.Calendar.DATE, 1);
+
+        scrollToCalendar(calendar.get(java.util.Calendar.YEAR),
+                calendar.get(java.util.Calendar.MONTH) + 1,
+                calendar.get(java.util.Calendar.DAY_OF_MONTH),
+                false,
+                true);
+    }
+
+    /**
      * 滚动到选择的日历
      */
     public void scrollToSelectCalendar() {
