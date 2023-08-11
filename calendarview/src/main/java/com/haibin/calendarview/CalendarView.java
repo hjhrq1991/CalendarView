@@ -1477,7 +1477,6 @@ public class CalendarView extends FrameLayout {
         mWeekBar.onDateSelected(mDelegate.mSelectedCalendar, mDelegate.getWeekStart(), false);
         mMonthPager.updateDefaultSelect();
         mWeekPager.updateDefaultSelect();
-
     }
 
     /**
@@ -1671,6 +1670,26 @@ public class CalendarView extends FrameLayout {
      */
     public Calendar getSelectedCalendar() {
         return mDelegate.mSelectedCalendar;
+    }
+
+    /**
+     * 更新选中日期
+     * modify: huangrenqiu
+     * date: 2023.08.11
+     *
+     * @param calendar
+     */
+    public void updateSelectedCalendar(Calendar calendar) {
+        if (mDelegate == null || mMonthPager == null || mWeekPager == null) {
+            return;
+        }
+        if (mDelegate.mSelectedCalendar.getDay() == calendar.getDay()) {
+            return;
+        }
+        mDelegate.mSelectedCalendar = calendar;
+        mWeekPager.updateWeekStart();
+        mMonthPager.updateWeekStart();
+        mYearViewPager.updateWeekStart();
     }
 
     /**
