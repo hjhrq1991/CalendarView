@@ -543,7 +543,8 @@ public class CalendarLayout extends LinearLayout {
         int monthHeight = CalendarUtil.getMonthViewHeight(year, month,
                 mDelegate.getCalendarItemHeight(),
                 mDelegate.getWeekStart(),
-                mDelegate.getMonthViewShowMode())
+                mDelegate.getMonthViewShowMode(),
+                mDelegate.getMonthMaxLineCount())
                 + weekBarHeight;
 
         int height = MeasureSpec.getSize(heightMeasureSpec);

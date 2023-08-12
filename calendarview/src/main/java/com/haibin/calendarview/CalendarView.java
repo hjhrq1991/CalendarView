@@ -1270,8 +1270,7 @@ public class CalendarView extends FrameLayout {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             return;
         }
-        setCalendarItemHeight((height -
-                mDelegate.getWeekBarHeight()) / 6);
+        setCalendarItemHeight((height - mDelegate.getWeekBarHeight()) / mDelegate.getMonthMaxLineCount());
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }

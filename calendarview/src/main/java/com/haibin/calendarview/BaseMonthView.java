@@ -69,7 +69,7 @@ public abstract class BaseMonthView extends BaseView {
         mMonth = month;
         initCalendar();
         mHeight = CalendarUtil.getMonthViewHeight(year, month, mItemHeight, mDelegate.getWeekStart(),
-                mDelegate.getMonthViewShowMode());
+                mDelegate.getMonthViewShowMode(), mDelegate.getMonthMaxLineCount());
 
     }
 
@@ -98,7 +98,7 @@ public abstract class BaseMonthView extends BaseView {
         }
 
         if (mDelegate.getMonthViewShowMode() == CalendarViewDelegate.MODE_ALL_MONTH) {
-            mLineCount = 6;
+            mLineCount = mDelegate.getMonthMaxLineCount();
         } else {
             mLineCount = (preDiff + monthDayCount + mNextDiff) / 7;
         }
@@ -180,9 +180,9 @@ public abstract class BaseMonthView extends BaseView {
      */
     final void updateShowMode() {
         mLineCount = CalendarUtil.getMonthViewLineCount(mYear, mMonth,
-                mDelegate.getWeekStart(), mDelegate.getMonthViewShowMode());
+                mDelegate.getWeekStart(), mDelegate.getMonthViewShowMode(), mDelegate.getMonthMaxLineCount());
         mHeight = CalendarUtil.getMonthViewHeight(mYear, mMonth, mItemHeight, mDelegate.getWeekStart(),
-                mDelegate.getMonthViewShowMode());
+                mDelegate.getMonthViewShowMode(), mDelegate.getMonthMaxLineCount());
         invalidate();
     }
 
@@ -192,14 +192,14 @@ public abstract class BaseMonthView extends BaseView {
     final void updateWeekStart() {
         initCalendar();
         mHeight = CalendarUtil.getMonthViewHeight(mYear, mMonth, mItemHeight, mDelegate.getWeekStart(),
-                mDelegate.getMonthViewShowMode());
+                mDelegate.getMonthViewShowMode(), mDelegate.getMonthMaxLineCount());
     }
 
     @Override
     void updateItemHeight() {
         super.updateItemHeight();
         mHeight = CalendarUtil.getMonthViewHeight(mYear, mMonth, mItemHeight, mDelegate.getWeekStart(),
-                mDelegate.getMonthViewShowMode());
+                mDelegate.getMonthViewShowMode(), mDelegate.getMonthMaxLineCount());
     }
 
 

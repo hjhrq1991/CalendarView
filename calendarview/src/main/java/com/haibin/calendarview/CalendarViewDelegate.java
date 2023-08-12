@@ -423,11 +423,17 @@ final class CalendarViewDelegate {
      */
     boolean mCalendarLongClickable = true;
 
+    /**
+     * 月份显示最多行数，当month_view_show_mode为mode_all时有效，默认为5
+     */
+    private int mMonthMaxLineCount = 5;
+
     CalendarViewDelegate(Context context, @Nullable AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CalendarView);
 
         LunarCalendar.init(context);
 
+        mMonthMaxLineCount = array.getInt(R.styleable.CalendarView_month_view_max_line_count, mMonthMaxLineCount);
         mCalendarClickable = array.getBoolean(R.styleable.CalendarView_calendar_clickable, true);
         mCalendarLongClickable = array.getBoolean(R.styleable.CalendarView_calendar_long_clickable, true);
 
@@ -1032,6 +1038,18 @@ final class CalendarViewDelegate {
 
     boolean isFullScreenCalendar() {
         return isFullScreenCalendar;
+    }
+
+    public boolean isCalendarClickable() {
+        return mCalendarClickable;
+    }
+
+    public boolean isCalendarLongClickable() {
+        return mCalendarLongClickable;
+    }
+
+    public int getMonthMaxLineCount() {
+        return mMonthMaxLineCount;
     }
 
     final void updateSelectCalendarScheme() {

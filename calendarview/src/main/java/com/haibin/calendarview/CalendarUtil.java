@@ -91,9 +91,9 @@ public final class CalendarUtil {
     }
 
 
-    public static int getMonthViewLineCount(int year, int month, int weekStartWith, int mode) {
+    public static int getMonthViewLineCount(int year, int month, int weekStartWith, int mode, int maxLineCount) {
         if (mode == CalendarViewDelegate.MODE_ALL_MONTH) {
-            return 6;
+            return maxLineCount;
         }
         int nextDiff = CalendarUtil.getMonthEndDiff(year, month, weekStartWith);
         int preDiff = CalendarUtil.getMonthViewStartDiff(year, month, weekStartWith);
@@ -131,9 +131,9 @@ public final class CalendarUtil {
      * @param mode          mode
      * @return 不需要多余行的高度
      */
-    public static int getMonthViewHeight(int year, int month, int itemHeight, int weekStartWith, int mode) {
+    public static int getMonthViewHeight(int year, int month, int itemHeight, int weekStartWith, int mode, int maxLineCount) {
         if (mode == CalendarViewDelegate.MODE_ALL_MONTH) {
-            return itemHeight * 6;
+            return itemHeight * maxLineCount;
         }
         return getMonthViewHeight(year, month, itemHeight, weekStartWith);
     }

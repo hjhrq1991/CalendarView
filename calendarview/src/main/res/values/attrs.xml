@@ -87,6 +87,12 @@
             <enum name="mode_fix" value="2" />
         </attr>
 
+        <!-- 月份显示最多行数，当month_view_show_mode为mode_all时有效 -->
+        <attr name="month_view_max_line_count">
+            <enum name="max_5" value="5" />
+            <enum name="max_6" value="6" />
+        </attr>
+
         <!-- 自定义周起始 -->
         <attr name="week_start_with">
             <enum name="sun" value="1" />
@@ -116,8 +122,8 @@
             <enum name="last_select_day_ignore_current" value="2" />
         </attr>
 
-        <attr name="calendar_clickable" format="boolean"/><!--日历是否允许点击事件-->
-        <attr name="calendar_long_clickable" format="boolean"/><!--日历是否允许长按事件-->
+        <attr name="calendar_clickable" format="boolean" /><!--日历是否允许点击事件-->
+        <attr name="calendar_long_clickable" format="boolean" /><!--日历是否允许长按事件-->
     </declare-styleable>
 
 
