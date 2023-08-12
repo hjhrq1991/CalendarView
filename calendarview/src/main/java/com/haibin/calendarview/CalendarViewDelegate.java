@@ -91,7 +91,6 @@ final class CalendarViewDelegate {
      */
     private int mMonthViewShowMode;
 
-
     /**
      * 默认选择模式
      */
@@ -116,7 +115,6 @@ final class CalendarViewDelegate {
      * 选择模式
      */
     private int mSelectMode;
-
 
     /**
      * 支持转换的最小农历年份
@@ -189,7 +187,6 @@ final class CalendarViewDelegate {
     private int mYearViewMonthHeight,
             mYearViewWeekHeight;
 
-
     /**
      * 年视图字体和标记颜色
      */
@@ -221,7 +218,6 @@ final class CalendarViewDelegate {
      * 标记的主题色和选中的主题色
      */
     private int mSchemeThemeColor, mSelectedThemeColor;
-
 
     /**
      * 自定义的日历路径
@@ -350,7 +346,6 @@ final class CalendarViewDelegate {
      */
     CalendarView.OnCalendarRangeSelectListener mCalendarRangeSelectListener;
 
-
     /**
      * 多选选择事件
      */
@@ -371,7 +366,6 @@ final class CalendarViewDelegate {
      */
     CalendarView.OnYearChangeListener mYearChangeListener;
 
-
     /**
      * 月份切换事件
      */
@@ -386,7 +380,6 @@ final class CalendarViewDelegate {
      * 视图改变事件
      */
     CalendarView.OnViewChangeListener mViewChangeListener;
-
 
     /**
      * 年视图改变事件
@@ -415,12 +408,28 @@ final class CalendarViewDelegate {
      */
     Calendar mSelectedStartRangeCalendar, mSelectedEndRangeCalendar;
 
+    /**
+     * 最小选择范围、最大选择范围
+     */
     private int mMinSelectRange, mMaxSelectRange;
+
+    /**
+     * 日历是否允许点击
+     */
+    boolean mCalendarClickable = true;
+
+    /**
+     * 日历是否允许长按
+     */
+    boolean mCalendarLongClickable = true;
 
     CalendarViewDelegate(Context context, @Nullable AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CalendarView);
 
         LunarCalendar.init(context);
+
+        mCalendarClickable = array.getBoolean(R.styleable.CalendarView_calendar_clickable, true);
+        mCalendarLongClickable = array.getBoolean(R.styleable.CalendarView_calendar_long_clickable, true);
 
         mCalendarPadding = (int) array.getDimension(R.styleable.CalendarView_calendar_padding, 0);
         mCalendarPaddingLeft = (int) array.getDimension(R.styleable.CalendarView_calendar_padding_left, 0);
@@ -454,8 +463,7 @@ final class CalendarViewDelegate {
         mWeekViewScrollable = array.getBoolean(R.styleable.CalendarView_week_view_scrollable, true);
         mYearViewScrollable = array.getBoolean(R.styleable.CalendarView_year_view_scrollable, true);
 
-        mDefaultCalendarSelectDay = array.getInt(R.styleable.CalendarView_month_view_auto_select_day,
-                FIRST_DAY_OF_MONTH);
+        mDefaultCalendarSelectDay = array.getInt(R.styleable.CalendarView_month_view_auto_select_day, FIRST_DAY_OF_MONTH);
 
         mMonthViewShowMode = array.getInt(R.styleable.CalendarView_month_view_show_mode, MODE_ALL_MONTH);
         mWeekStart = array.getInt(R.styleable.CalendarView_week_start_with, WEEK_START_WITH_SUN);
@@ -579,7 +587,6 @@ final class CalendarViewDelegate {
             e.printStackTrace();
         }
     }
-
 
     private void setRange(int minYear, int minYearMonth,
                           int maxYear, int maxYearMonth) {
@@ -742,7 +749,6 @@ final class CalendarViewDelegate {
     int getMaxYearMonth() {
         return mMaxYearMonth;
     }
-
 
     int getYearViewMonthTextSize() {
         return mYearViewMonthTextSize;

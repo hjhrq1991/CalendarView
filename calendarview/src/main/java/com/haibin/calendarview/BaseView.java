@@ -221,9 +221,6 @@ public abstract class BaseView extends View implements View.OnClickListener, Vie
         mSelectedPaint.setAntiAlias(true);
         mSelectedPaint.setStyle(Paint.Style.FILL);
         mSelectedPaint.setStrokeWidth(2);
-
-        setOnClickListener(this);
-        setOnLongClickListener(this);
     }
 
     /**
@@ -233,6 +230,9 @@ public abstract class BaseView extends View implements View.OnClickListener, Vie
      */
     final void setup(CalendarViewDelegate delegate) {
         this.mDelegate = delegate;
+        setOnClickListener(mDelegate.mCalendarClickable ? this : null);
+        setOnLongClickListener(mDelegate.mCalendarLongClickable ? this : null);
+
         mWeekStartWidth = mDelegate.getWeekStart();
         updateStyle();
         updateItemHeight();

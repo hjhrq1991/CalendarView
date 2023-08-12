@@ -115,6 +115,9 @@
             <enum name="last_select_day" value="1" />
             <enum name="last_select_day_ignore_current" value="2" />
         </attr>
+
+        <attr name="calendar_clickable" format="boolean"/><!--日历是否允许点击事件-->
+        <attr name="calendar_long_clickable" format="boolean"/><!--日历是否允许长按事件-->
     </declare-styleable>
 
 
@@ -139,6 +142,4 @@
         </attr>
         <attr name="calendar_content_view_id" format="integer" />
     </declare-styleable>
-
-
 </resources>
