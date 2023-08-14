@@ -422,6 +422,9 @@ public abstract class BaseView extends View implements View.OnClickListener, Vie
         return mDelegate != null ? mDelegate.getCalendarPaddingRight() : 0;
     }
 
+    protected Calendar getCurrentDay() {
+        return this.mDelegate.getCurrentDay();
+    }
 
     /**
      * 初始化画笔相关
