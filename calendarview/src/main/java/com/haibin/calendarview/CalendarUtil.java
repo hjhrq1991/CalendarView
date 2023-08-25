@@ -603,6 +603,78 @@ public final class CalendarUtil {
         return mItems;
     }
 
+    /**
+     * 通过某日选取当前一周，该方法用于外部
+     * @param calendar
+     * @param weekStart 周日：1，周一：2，周六：7
+     * @return
+     */
+    public static List<Calendar> getWeekCalendars(java.util.Calendar calendar, int weekStart) {
+        long curTime = calendar.getTimeInMillis();
+
+        int week = calendar.get(java.util.Calendar.DAY_OF_WEEK);
+        int startDiff;
+        if (weekStart == 1) {
+            startDiff = week - 1;
+        } else if (weekStart == 2) {
+            startDiff = week == 1 ? 6 : week - weekStart;
+        } else {
+            startDiff = week == 7 ? 0 : week;
+        }
+        curTime -= startDiff * ONE_DAY;
+
+        java.util.Calendar minCalendar = java.util.Calendar.getInstance();
+        minCalendar.setTimeInMillis(curTime);
+
+        Calendar startCalendar = new Calendar();
+        startCalendar.setYear(minCalendar.get(java.util.Calendar.YEAR));
+        startCalendar.setMonth(minCalendar.get(java.util.Calendar.MONTH) + 1);
+        startCalendar.setDay(minCalendar.get(java.util.Calendar.DAY_OF_MONTH));
+        return initCalendarForWeekView(startCalendar, weekStart);
+    }
+
+    static List<Calendar> initCalendarForWeekView(Calendar calendar, int weekStart) {
+        java.util.Calendar date = java.util.Calendar.getInstance();//当天时间
+        date.set(calendar.getYear(), calendar.getMonth() - 1, calendar.getDay(), 12, 0, 0);
+        long curDateMills = date.getTimeInMillis();//生成选择的日期时间戳
+
+        //int weekEndDiff = getWeekViewEndDiff(calendar.getYear(), calendar.getMonth(), calendar.getDay(), weekStart);
+        //weekEndDiff 例如周起始为周日1，当前为2020-04-01，周三，则weekEndDiff为本周结束相差今天三天，weekEndDiff=3
+        int weekEndDiff = 6;
+        List<Calendar> mItems = new ArrayList<>();
+
+        date.setTimeInMillis(curDateMills);
+        Calendar selectCalendar = new Calendar();
+        selectCalendar.setYear(calendar.getYear());
+        selectCalendar.setMonth(calendar.getMonth());
+        selectCalendar.setDay(calendar.getDay());
+
+        LunarCalendar.setupLunarCalendar(selectCalendar);
+        selectCalendar.setCurrentMonth(true);
+        mItems.add(selectCalendar);
+
+        for (int i = 1; i <= weekEndDiff; i++) {
+            date.setTimeInMillis(curDateMills + i * ONE_DAY);
+            Calendar calendarDate = new Calendar();
+            calendarDate.setYear(date.get(java.util.Calendar.YEAR));
+            calendarDate.setMonth(date.get(java.util.Calendar.MONTH) + 1);
+            calendarDate.setDay(date.get(java.util.Calendar.DAY_OF_MONTH));
+
+            LunarCalendar.setupLunarCalendar(calendarDate);
+            calendarDate.setCurrentMonth(true);
+            mItems.add(calendarDate);
+        }
+
+        // 增加当前月判断。取中间天月份来判断前后日期是否当前月
+        // modify: huangrenqiu
+        // date: 2023.08.11
+        Calendar middleCalendar = mItems.get(3);
+        for (Calendar item : mItems) {
+            item.setCurrentMonth(middleCalendar.isSameMonth(item));
+        }
+        return mItems;
+    }
+
     static List<Calendar> getWeekCalendars(Calendar calendar, CalendarViewDelegate mDelegate) {
         long curTime = calendar.getTimeInMillis();
 
