@@ -16,6 +16,7 @@
 package com.haibin.calendarview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -45,7 +46,6 @@ public class WeekBar extends LinearLayout {
         if ("com.haibin.calendarview.WeekBar".equalsIgnoreCase(getClass().getName())) {
             setTextSize(mDelegate.getWeekTextSize());
             setTextColor(delegate.getWeekTextColor());
-            setBackgroundColor(delegate.getWeekBackground());
             setPadding(delegate.getCalendarPaddingLeft(), 0, delegate.getCalendarPaddingRight(), 0);
         }
     }
@@ -135,6 +135,14 @@ public class WeekBar extends LinearLayout {
             return weeks[index == 6 ? 0 : index + 1];
         }
         return weeks[index == 0 ? 6 : index - 1];
+    }
+
+    /**
+     * 是否周视图，可复写实现周视图和月视图切换时的变化
+     * @param isWeek 是否周视图
+     */
+    protected void showWeekView(boolean isWeek) {
+        setBackgroundColor(isWeek ? mDelegate.getWeekBarWeekBackground() : mDelegate.getWeekBarMonthBackground());
     }
 
     @Override

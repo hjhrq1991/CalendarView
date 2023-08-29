@@ -6,8 +6,8 @@
         <attr name="calendar_padding_left" format="dimension" /><!--日历内部左padding-->
         <attr name="calendar_padding_right" format="dimension" /><!--日历内部右padding-->
 
-
-        <attr name="week_background" format="color" /><!--周背景-->
+        <attr name="week_bar_week_background" format="color" /><!--weekbar周视图背景-->
+        <attr name="week_bar_month_background" format="color" /><!--weekbar月视图背景-->
         <attr name="week_line_background" format="color" /><!--线条颜色-->
         <attr name="week_text_color" format="color" /><!--周栏字体颜色-->
         <attr name="week_text_size" format="dimension" /><!--周栏字体大小-->

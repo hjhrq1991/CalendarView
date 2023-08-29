@@ -345,6 +345,7 @@ public class CalendarLayout extends LinearLayout {
                     if (!isWeekView && mDelegate.mViewChangeListener != null) {
                         mDelegate.mViewChangeListener.onViewChange(false);
                     }
+                    mWeekBar.showWeekView(true);
                     isWeekView = true;
                     return true;
                 }
@@ -828,6 +829,7 @@ public class CalendarLayout extends LinearLayout {
      * 隐藏周视图
      */
     private void hideWeek(boolean isNotify) {
+        mWeekBar.showWeekView(false);
         if (isNotify) {
             onShowMonthView();
         }
@@ -839,6 +841,7 @@ public class CalendarLayout extends LinearLayout {
      * 显示周视图
      */
     private void showWeek() {
+        mWeekBar.showWeekView(true);
         onShowWeekView();
         if (mWeekPager != null && mWeekPager.getAdapter() != null) {
             mWeekPager.getAdapter().notifyDataSetChanged();

@@ -1767,6 +1767,15 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
+     * 获得星期栏
+     *
+     * @return 获得星期栏
+     */
+    public WeekBar getWeekBar() {
+        return mWeekBar;
+    }
+
+    /**
      * 是否在日期范围内
      *
      * @param calendar calendar

@@ -202,7 +202,8 @@ final class CalendarViewDelegate {
      */
     private int mWeekLineBackground,
             mYearViewBackground,
-            mWeekBackground;
+            mWeekBarWeekBackground,
+            mWeekBarMonthBackground;
 
     /**
      * 星期栏Line margin
@@ -479,7 +480,8 @@ final class CalendarViewDelegate {
         mMaxSelectRange = array.getInt(R.styleable.CalendarView_max_select_range, -1);
         setSelectRange(mMinSelectRange, mMaxSelectRange);
 
-        mWeekBackground = array.getColor(R.styleable.CalendarView_week_background, Color.WHITE);
+        mWeekBarWeekBackground = array.getColor(R.styleable.CalendarView_week_bar_week_background, Color.WHITE);
+        mWeekBarMonthBackground = array.getColor(R.styleable.CalendarView_week_bar_month_background, Color.WHITE);
         mWeekLineBackground = array.getColor(R.styleable.CalendarView_week_line_background, Color.TRANSPARENT);
         mYearViewBackground = array.getColor(R.styleable.CalendarView_year_view_background, Color.WHITE);
         mWeekTextColor = array.getColor(R.styleable.CalendarView_week_text_color, 0xFF333333);
@@ -684,8 +686,12 @@ final class CalendarViewDelegate {
         return mSelectedThemeColor;
     }
 
-    int getWeekBackground() {
-        return mWeekBackground;
+    int getWeekBarWeekBackground() {
+        return mWeekBarWeekBackground;
+    }
+
+    int getWeekBarMonthBackground() {
+        return mWeekBarMonthBackground;
     }
 
     int getYearViewBackground() {
