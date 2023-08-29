@@ -261,7 +261,7 @@ public abstract class BaseWeekView extends BaseView {
     /**
      * 外部时间更新当前日用
      */
-    void updateCurrentDate2() {
+    void updateCurrentDateByDate() {
         if (mItems == null)
             return;
         for (Calendar a : mItems) {//添加操作
