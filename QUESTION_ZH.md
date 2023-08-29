@@ -152,7 +152,8 @@ mCalendarView.setMonthView(MeiZuMonthView.class);
              app:selected_text_color="#fff"
              app:selected_theme_color="#333"
              app:week_start_with="mon"
-             app:week_background="#fff"
+            app:week_bar_week_background="@android:color/white"
+            app:week_bar_month_background="@android:color/white"
              app:month_view_show_mode="mode_only_current"
              app:week_text_color="#111" />
 
