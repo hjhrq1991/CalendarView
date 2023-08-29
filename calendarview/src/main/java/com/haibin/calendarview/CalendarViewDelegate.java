@@ -995,6 +995,7 @@ final class CalendarViewDelegate {
         mCurrentDate.setYear(year);
         mCurrentDate.setMonth(month);
         mCurrentDate.setDay(day);
+        setRange(mMinYear, mMinYearMonth, mMaxYear, mMaxYearMonth);
         LunarCalendar.setupLunarCalendar(mCurrentDate);
     }
 

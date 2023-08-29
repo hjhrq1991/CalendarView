@@ -320,6 +320,16 @@ public final class WeekViewPager extends ViewPager {
     }
 
     /**
+     * 外部时间更新当前日用
+     */
+    void updateCurrentDate2() {
+        for (int i = 0; i < getChildCount(); i++) {
+            BaseWeekView view = (BaseWeekView) getChildAt(i);
+            view.updateCurrentDate2();
+        }
+    }
+
+    /**
      * 更新显示模式
      */
     void updateShowMode() {

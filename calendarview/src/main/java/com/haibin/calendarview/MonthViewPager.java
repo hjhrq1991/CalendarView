@@ -440,6 +440,15 @@ public final class MonthViewPager extends ViewPager {
         }
     }
 
+    /**
+     * 外部时间更新当前日用
+     */
+    void updateCurrentDate2() {
+        for (int i = 0; i < getChildCount(); i++) {
+            BaseMonthView view = (BaseMonthView) getChildAt(i);
+            view.updateCurrentDate2();
+        }
+    }
 
     /**
      * 更新显示模式

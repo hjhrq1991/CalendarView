@@ -1692,8 +1692,8 @@ public class CalendarView extends FrameLayout {
             return;
         }
         mDelegate.updateCurrentDay(year, month, day);
-        mMonthPager.updateCurrentDate();
-        mWeekPager.updateCurrentDate();
+        mMonthPager.updateCurrentDate2();
+        mWeekPager.updateCurrentDate2();
     }
 
     /**
