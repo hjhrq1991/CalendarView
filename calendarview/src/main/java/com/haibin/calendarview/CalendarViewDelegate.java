@@ -312,7 +312,6 @@ final class CalendarViewDelegate {
      */
     private Calendar mCurrentDate;
 
-
     private boolean mMonthViewScrollable,
             mWeekViewScrollable,
             mYearViewScrollable;
@@ -975,11 +974,27 @@ final class CalendarViewDelegate {
         return mCurrentDate;
     }
 
+    /**
+     * 用本地时间更新今日
+     */
     void updateCurrentDay() {
         Date d = new Date();
         mCurrentDate.setYear(CalendarUtil.getDate("yyyy", d));
         mCurrentDate.setMonth(CalendarUtil.getDate("MM", d));
         mCurrentDate.setDay(CalendarUtil.getDate("dd", d));
+        LunarCalendar.setupLunarCalendar(mCurrentDate);
+    }
+
+    /**
+     * 使用外部日期更新今天
+     * @param year
+     * @param month
+     * @param day
+     */
+    void updateCurrentDay(int year, int month, int day) {
+        mCurrentDate.setYear(year);
+        mCurrentDate.setMonth(month);
+        mCurrentDate.setDay(day);
         LunarCalendar.setupLunarCalendar(mCurrentDate);
     }
 

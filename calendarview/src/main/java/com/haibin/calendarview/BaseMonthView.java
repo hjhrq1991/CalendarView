@@ -207,13 +207,14 @@ public abstract class BaseMonthView extends BaseView {
     void updateCurrentDate() {
         if (mItems == null)
             return;
-        if (mItems.contains(mDelegate.getCurrentDay())) {
-            for (Calendar a : mItems) {//添加操作
-                a.setCurrentDay(false);
-            }
-            int index = mItems.indexOf(mDelegate.getCurrentDay());
-            mItems.get(index).setCurrentDay(true);
+//        if (mItems.contains(mDelegate.getCurrentDay())) {
+        for (Calendar a : mItems) {//添加操作
+            a.setCurrentDay(false);
         }
+        int index = mItems.indexOf(mDelegate.getCurrentDay());
+        if (index >= 0)
+            mItems.get(index).setCurrentDay(true);
+//        }
         invalidate();
     }
 

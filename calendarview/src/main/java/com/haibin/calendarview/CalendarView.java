@@ -1682,6 +1682,21 @@ public class CalendarView extends FrameLayout {
     }
 
     /**
+     * 使用外部日期更新当前时间
+     */
+    public final void updateCurrentDate(int year, int month, int day) {
+        if (mDelegate == null || mMonthPager == null || mWeekPager == null) {
+            return;
+        }
+        if (getCurDay() == day) {
+            return;
+        }
+        mDelegate.updateCurrentDay(year, month, day);
+        mMonthPager.updateCurrentDate();
+        mWeekPager.updateCurrentDate();
+    }
+
+    /**
      * 获取当前周数据
      *
      * @return 获取当前周数据
