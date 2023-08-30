@@ -65,6 +65,11 @@ final class CalendarViewDelegate {
      */
     static final int LAST_MONTH_VIEW_SELECT_DAY_IGNORE_CURRENT = 2;
 
+    /**
+     * 忽略选择，保持原来选中
+     */
+    static final int IGNORE = 3;
+
     private int mDefaultCalendarSelectDay;
 
     /**

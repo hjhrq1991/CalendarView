@@ -821,10 +821,12 @@ public final class CalendarUtil {
         calendar.setYear((position + delegate.getMinYearMonth() - 1) / 12 + delegate.getMinYear());
         calendar.setMonth((position + delegate.getMinYearMonth() - 1) % 12 + 1);
         if (delegate.getDefaultCalendarSelectDay() != CalendarViewDelegate.FIRST_DAY_OF_MONTH) {
-            int monthDays = getMonthDaysCount(calendar.getYear(), calendar.getMonth());
-            Calendar indexCalendar = delegate.mIndexCalendar;
-            calendar.setDay(indexCalendar == null || indexCalendar.getDay() == 0 ? 1 :
-                    monthDays < indexCalendar.getDay() ? monthDays : indexCalendar.getDay());
+            if (delegate.getDefaultCalendarSelectDay() != CalendarViewDelegate.IGNORE) {
+                int monthDays = getMonthDaysCount(calendar.getYear(), calendar.getMonth());
+                Calendar indexCalendar = delegate.mIndexCalendar;
+                calendar.setDay(indexCalendar == null || indexCalendar.getDay() == 0 ? 1 :
+                        monthDays < indexCalendar.getDay() ? monthDays : indexCalendar.getDay());
+            }
         } else {
             calendar.setDay(1);
         }

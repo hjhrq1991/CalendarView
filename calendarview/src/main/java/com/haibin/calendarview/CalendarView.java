@@ -293,6 +293,65 @@ public class CalendarView extends FrameLayout {
         return mDelegate.getCurrentDay().getYear();
     }
 
+    /**
+     * 获取当前视图月份
+     *
+     * @return 周视图、月视图当前月份
+     */
+    public String getCurrentYearMonth() {
+        if (mWeekPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentWeekCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            int year = calendar.getYear();
+            int month = calendar.getMonth();
+            return year + "" + (month < 10 ? "0" + month : month);
+        } else if (mMonthPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentMonthCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            int year = calendar.getYear();
+            int month = calendar.getMonth();
+            return year + "" + (month < 10 ? "0" + month : month);
+        }
+        return "";
+    }
+
+    /**
+     * 获取当前视图月份
+     *
+     * @return 周视图、月视图当前月份
+     */
+    public int getCurrentMonth() {
+        if (mWeekPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentWeekCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            return calendar.getMonth();
+        } else if (mMonthPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentMonthCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            return calendar.getMonth();
+        }
+        return 0;
+    }
+
+
+
+    /**
+     * 获取当前视图年份
+     *
+     * @return 周视图、月视图当前年份
+     */
+    public int getCurrentYear() {
+        if (mWeekPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentWeekCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            return calendar.getYear();
+        } else if (mMonthPager.getVisibility() == VISIBLE) {
+            List<Calendar> calendars = getCurrentMonthCalendars();
+            Calendar calendar = calendars.get(calendars.size() / 2);
+            return calendar.getYear();
+        }
+        return 0;
+    }
 
     /**
      * 打开日历年月份快速选择
@@ -672,17 +731,32 @@ public class CalendarView extends FrameLayout {
         mDelegate.setYearViewScrollable(yearViewScrollable);
     }
 
-
+    /**
+     * 设置月份切换默认选中日期，默认为每月1日
+     */
     public final void setDefaultMonthViewSelectDay() {
         mDelegate.setDefaultCalendarSelectDay(CalendarViewDelegate.FIRST_DAY_OF_MONTH);
     }
 
+    /**
+     * 设置月份切换默认跟随上次选中日期
+     */
     public final void setLastMonthViewSelectDay() {
         mDelegate.setDefaultCalendarSelectDay(CalendarViewDelegate.LAST_MONTH_VIEW_SELECT_DAY);
     }
 
+    /**
+     * 设置月份切换默认跟随上次选中日期除今日日期外
+     */
     public final void setLastMonthViewSelectDayIgnoreCurrent() {
         mDelegate.setDefaultCalendarSelectDay(CalendarViewDelegate.LAST_MONTH_VIEW_SELECT_DAY_IGNORE_CURRENT);
+    }
+
+    /**
+     * 设置月份切换默认不选中
+     */
+    public final void setDefaultMonthViewSelectIgnore() {
+        mDelegate.setDefaultCalendarSelectDay(CalendarViewDelegate.IGNORE);
     }
 
     /**
