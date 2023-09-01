@@ -432,4 +432,32 @@ public abstract class BaseView extends View implements View.OnClickListener, Vie
     protected void initPaint() {
 
     }
+
+    /**
+     * 获取点击事件处的对象。
+     * 主要用于自行处理Scheme点击，但也可以自行用于日历任意位置点击
+     *
+     * @param x        点击日历x坐标
+     * @param y        点击日历y坐标
+     * @param clickedX 点击x坐标
+     * @param clickedY 点击y坐标
+     * @param calendar 选中日历
+     * @return obj can as null
+     */
+    protected Object getClickCalendarItem(float x, float y, float clickedX, float clickedY, Calendar calendar) {
+        return null;
+    }
+
+    /**
+     * 获取日历外点击事件处的对象
+     *
+     * @param x                x
+     * @param y                y
+     * @param adjacentCalendar adjacent calendar
+     * @return obj can as null
+     */
+    @SuppressWarnings("unused")
+    protected Object getClickCalendarPaddingObject(float x, float y, Calendar adjacentCalendar) {
+        return null;
+    }
 }

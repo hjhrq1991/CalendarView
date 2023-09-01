@@ -1999,6 +1999,19 @@ public class CalendarView extends FrameLayout {
          * @param isClick  isClick
          */
         void onCalendarSelect(Calendar calendar, boolean isClick);
+
+        /**
+         * 日历选中时间处理，
+         * 主要用于自行处理Scheme点击，但也可以自行用于日历任意位置点击
+         * 使用：自定义 MonthView /WeekView 覆写 getClickCalendarItem 方法
+         *
+         * @param x        点击日历x坐标
+         * @param y        点击日历y坐标
+         * @param clickedX 点击x坐标
+         * @param clickedY 点击y坐标
+         * @param calendar 选中日历
+         */
+        void onClickCalendarItem(float x, float y,float clickedX, float clickedY, boolean isMonthView, Calendar calendar, Object obj);
     }
 
     public interface OnCalendarLongClickListener {
@@ -2064,7 +2077,6 @@ public class CalendarView extends FrameLayout {
          * @param adjacentCalendar 相邻的日历日期
          * @param obj              此处的对象，自行设置
          */
-        void onClickCalendarPadding(float x, float y, boolean isMonthView,
-                                    Calendar adjacentCalendar, Object obj);
+        void onClickCalendarPadding(float x, float y, boolean isMonthView, Calendar adjacentCalendar, Object obj);
     }
 }
