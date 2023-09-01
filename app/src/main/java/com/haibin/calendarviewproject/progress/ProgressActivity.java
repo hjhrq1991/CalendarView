@@ -181,5 +181,9 @@ public class ProgressActivity extends BaseActivity implements
         mTextMonthDay.setText(String.valueOf(year));
     }
 
+    @Override
+    public void onClickCalendarItem(float x, float y, float clickedX, float clickedY, boolean isMonthView, Calendar calendar, Object obj) {
+
+    }
 
 }

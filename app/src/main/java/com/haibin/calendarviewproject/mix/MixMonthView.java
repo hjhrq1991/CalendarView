@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarUtil;
@@ -101,12 +102,6 @@ public class MixMonthView extends MonthView {
     }
 
     @Override
-    protected Object getClickCalendarPaddingObject(float x, float y,Calendar adjacentCalendar) {
-        return CalendarUtil.getWeekCountBetweenBothCalendar(mYear, 1, 1,
-                mYear, adjacentCalendar.getMonth(), adjacentCalendar.getDay(), getWeekStartWith());
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
 
         int weekStart = CalendarUtil.getWeekCountBetweenBothCalendar(mYear, 1, 1,
@@ -132,6 +127,28 @@ public class MixMonthView extends MonthView {
         int cy = y + mItemHeight / 2;
         canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
         return true;
+    }
+
+
+    /**
+     * 获取点击事件处的对象。
+     * 主要用于自行处理Scheme点击，但也可以自行用于日历任意位置点击
+     *
+     * @param x        点击日历x坐标
+     * @param y        点击日历y坐标
+     * @param clickedX 点击x坐标
+     * @param clickedY 点击y坐标
+     * @param calendar 选择日历
+     * @return obj can as null
+     */
+    protected Object getClickCalendarItem(float x, float y, float clickedX, float clickedY, Calendar calendar) {
+        return "点击了位置，可以自定义view覆写getClickCalendarItem方法获取相关值";
+    }
+
+    @Override
+    protected Object getClickCalendarPaddingObject(float x, float y, Calendar adjacentCalendar) {
+        return CalendarUtil.getWeekCountBetweenBothCalendar(mYear, 1, 1,
+                mYear, adjacentCalendar.getMonth(), adjacentCalendar.getDay(), getWeekStartWith());
     }
 
     @Override

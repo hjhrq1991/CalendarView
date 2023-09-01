@@ -178,6 +178,11 @@ public class MixActivity extends BaseActivity implements
 
     }
 
+    @Override
+    public void onClickCalendarItem(float x, float y, float clickedX, float clickedY, boolean isMonthView, Calendar calendar, Object obj) {
+        Toast.makeText(MixActivity.this, (String) obj, Toast.LENGTH_SHORT).show();
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {

@@ -164,6 +164,11 @@ public class SimpleActivity extends BaseActivity implements
 
     }
 
+    @Override
+    public void onClickCalendarItem(float x, float y, float clickedX, float clickedY, boolean isMonthView, Calendar calendar, Object obj) {
+
+    }
+
     @SuppressLint("SetTextI18n")
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
