@@ -714,6 +714,15 @@ public class CalendarView extends FrameLayout {
 
 
     /**
+     * 设置月视图是否可滚动
+     *
+     * @param mMonthViewOtherMonthScrollable 设置月视图点击非本月是否可滚动
+     */
+    public final void setMonthViewOtherMonthScrollable(boolean mMonthViewOtherMonthScrollable) {
+        mDelegate.setMonthViewOtherMonthScrollable(mMonthViewOtherMonthScrollable);
+    }
+
+    /**
      * 设置周视图是否可滚动
      *
      * @param weekViewScrollable 设置周视图是否可滚动

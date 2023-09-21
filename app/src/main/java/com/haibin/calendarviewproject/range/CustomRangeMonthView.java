@@ -3,6 +3,7 @@ package com.haibin.calendarviewproject.range;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Log;
 
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.RangeMonthView;
@@ -32,19 +33,24 @@ public class CustomRangeMonthView extends RangeMonthView {
                                      boolean isSelectedPre, boolean isSelectedNext) {
         int cx = x + mItemWidth / 2;
         int cy = y + mItemHeight / 2;
+        Log.d("hrq===112233", "日期：" + calendar.toString() + "     isSelectedPre: " + isSelectedPre + "      isSelectedNext: " + isSelectedNext);
         if (isSelectedPre) {
             if (isSelectedNext) {
+                this.mSelectedPaint.setColor(0xffD4E2FD);
                 canvas.drawRect(x, cy - mRadius, x + mItemWidth, cy + mRadius, mSelectedPaint);
             } else {//最后一个，the last
+                this.mSelectedPaint.setColor(0xffD4E2FD);
                 canvas.drawRect(x, cy - mRadius, cx, cy + mRadius, mSelectedPaint);
+                this.mSelectedPaint.setColor(0xff315cec);
                 canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
             }
         } else {
-            if(isSelectedNext){
+            if (isSelectedNext) {
+                this.mSelectedPaint.setColor(0xffD4E2FD);
                 canvas.drawRect(cx, cy - mRadius, x + mItemWidth, cy + mRadius, mSelectedPaint);
             }
+            this.mSelectedPaint.setColor(0xff315cec);
             canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
-            //
         }
 
         return false;
@@ -75,12 +81,17 @@ public class CustomRangeMonthView extends RangeMonthView {
                     cx,
                     baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() && isInRange && isEnable? mSchemeTextPaint : mOtherMonthTextPaint);
+                            calendar.isCurrentMonth() && isInRange && isEnable ? mSchemeTextPaint : mOtherMonthTextPaint);
 
         } else {
             canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() && isInRange && isEnable? mCurMonthTextPaint : mOtherMonthTextPaint);
+                            calendar.isCurrentMonth() && isInRange && isEnable ? mCurMonthTextPaint : mOtherMonthTextPaint);
         }
+    }
+
+    @Override
+    protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected, boolean isSelectedPre, boolean isSelectedNext) {
+
     }
 }

@@ -96,6 +96,7 @@ public abstract class RangeMonthView extends BaseMonthView {
             }
         }
         onDrawText(canvas, calendar, x, y, hasScheme, isSelected);
+        onDrawText(canvas, calendar, x, y, hasScheme, isSelected, isPreSelected, isNextSelected);
     }
 
     /**
@@ -185,7 +186,7 @@ public abstract class RangeMonthView extends BaseMonthView {
 
         mCurrentItem = mItems.indexOf(calendar);
 
-        if (!calendar.isCurrentMonth() && mMonthViewPager != null) {
+        if (!calendar.isCurrentMonth() && mDelegate.isMonthViewOtherMonthScrollable() && mMonthViewPager != null) {
             int cur = mMonthViewPager.getCurrentItem();
             int position = mCurrentItem < 7 ? cur - 1 : cur + 1;
             mMonthViewPager.setCurrentItem(position);
@@ -281,7 +282,6 @@ public abstract class RangeMonthView extends BaseMonthView {
      */
     protected abstract void onDrawScheme(Canvas canvas, Calendar calendar, int x, int y, boolean isSelected);
 
-
     /**
      * 绘制日历文本
      *
@@ -293,4 +293,18 @@ public abstract class RangeMonthView extends BaseMonthView {
      * @param isSelected 是否选中
      */
     protected abstract void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected);
+
+    /**
+     * 绘制日历文本
+     *
+     * @param canvas     canvas
+     * @param calendar   日历calendar
+     * @param x          日历Card x起点坐标
+     * @param y          日历Card y起点坐标
+     * @param hasScheme  是否是标记的日期
+     * @param isSelected 是否选中
+     * @param isSelectedPre  上一个日期是否选中
+     * @param isSelectedNext 下一个日期是否选中
+     */
+    protected abstract void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected, boolean isSelectedPre, boolean isSelectedNext);
 }

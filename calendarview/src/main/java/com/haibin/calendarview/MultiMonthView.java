@@ -154,7 +154,7 @@ public abstract class MultiMonthView extends BaseMonthView {
 
         mCurrentItem = mItems.indexOf(calendar);
 
-        if (!calendar.isCurrentMonth() && mMonthViewPager != null) {
+        if (!calendar.isCurrentMonth() && mDelegate.isMonthViewOtherMonthScrollable() && mMonthViewPager != null) {
             int cur = mMonthViewPager.getCurrentItem();
             int position = mCurrentItem < 7 ? cur - 1 : cur + 1;
             mMonthViewPager.setCurrentItem(position);

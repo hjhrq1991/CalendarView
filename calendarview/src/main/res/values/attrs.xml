@@ -75,6 +75,8 @@
 
         <!--月视图是否可滚动-->
         <attr name="month_view_scrollable" format="boolean" />
+        <!--月视图点击非本月是否可滚动-->
+        <attr name="month_view_other_month_scrollable" format="boolean" />
         <!--周视图是否可滚动-->
         <attr name="week_view_scrollable" format="boolean" />
         <!--年视图是否可滚动-->

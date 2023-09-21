@@ -318,6 +318,7 @@ final class CalendarViewDelegate {
     private Calendar mCurrentDate;
 
     private boolean mMonthViewScrollable,
+            mMonthViewOtherMonthScrollable,
             mWeekViewScrollable,
             mYearViewScrollable;
 
@@ -471,6 +472,7 @@ final class CalendarViewDelegate {
         }
 
         mMonthViewScrollable = array.getBoolean(R.styleable.CalendarView_month_view_scrollable, true);
+        mMonthViewOtherMonthScrollable = array.getBoolean(R.styleable.CalendarView_month_view_other_month_scrollable, true);
         mWeekViewScrollable = array.getBoolean(R.styleable.CalendarView_week_view_scrollable, true);
         mYearViewScrollable = array.getBoolean(R.styleable.CalendarView_year_view_scrollable, true);
 
@@ -883,6 +885,10 @@ final class CalendarViewDelegate {
         return mMonthViewScrollable;
     }
 
+    boolean isMonthViewOtherMonthScrollable() {
+        return mMonthViewOtherMonthScrollable;
+    }
+
     boolean isWeekViewScrollable() {
         return mWeekViewScrollable;
     }
@@ -893,6 +899,10 @@ final class CalendarViewDelegate {
 
     void setMonthViewScrollable(boolean monthViewScrollable) {
         this.mMonthViewScrollable = monthViewScrollable;
+    }
+
+    void setMonthViewOtherMonthScrollable(boolean mMonthViewOtherMonthScrollable) {
+        this.mMonthViewOtherMonthScrollable = mMonthViewOtherMonthScrollable;
     }
 
     void setWeekViewScrollable(boolean weekViewScrollable) {
